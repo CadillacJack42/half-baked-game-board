@@ -21,8 +21,6 @@ export default function CreatePage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(history);
-
     // create a game
     const newGame = {
       title,
@@ -46,12 +44,12 @@ export default function CreatePage() {
         <label>
           Title
           {/* on change, set the title in state */}
-          <input required name="title" onChange={(e) => setTitle(e.target.value)} />
+          <input required name="title" onChange={(e) => setTitle(e.target.value)} value={title} />
         </label>
         <label>
           Genre
           {/* on change, set the genre in state */}
-          <select required onChange={(e) => setGenre(e.target.value)}>
+          <select required onChange={(e) => setGenre(e.target.value)} value={genre}>
             <option>Tile-laying</option>
             <option>Economic</option>
             <option>War</option>
@@ -64,22 +62,42 @@ export default function CreatePage() {
         <label>
           Designer
           {/* on change, set the designer in state */}
-          <input required name="designer" onChange={(e) => setDesigner(e.target.value)} />
+          <input
+            required
+            name="designer"
+            onChange={(e) => setDesigner(e.target.value)}
+            value={designer}
+          />
         </label>
         <label>
           Min Players
           {/* on change, set the min players in state */}
-          <input required name="min_players" onChange={(e) => setMinPlayers(e.target.value)} />
+          <input
+            required
+            name="min_players"
+            onChange={(e) => setMinPlayers(e.target.value)}
+            value={minPlayers}
+          />
         </label>
         <label>
           Max Players
           {/* on change, set the max players in state */}
-          <input required name="max_players" onChange={(e) => setMaxPlayers(e.target.value)} />
+          <input
+            required
+            name="max_players"
+            onChange={(e) => setMaxPlayers(e.target.value)}
+            value={maxPlayers}
+          />
         </label>
         <label>
           Description
           {/* on change, set the description in state */}
-          <textarea required name="max_players" onChange={(e) => setDescription(e.target.value)} />
+          <textarea
+            required
+            name="description"
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+          />
         </label>
         <button>Create game</button>
       </form>

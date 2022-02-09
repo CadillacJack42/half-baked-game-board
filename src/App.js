@@ -16,7 +16,8 @@ export default function App() {
   useEffect(() => {
     const user = getUser();
     setUser(user);
-  }, []);
+    console.log(user);
+  }, [userData]);
 
   async function handleLogout() {
     // call the logout function
@@ -34,7 +35,7 @@ export default function App() {
             <>
               <Link to={'/board-games'}>List View</Link>
               <Link to={'/create'}>Create</Link>
-              <button>Logout</button>
+              <button onClick={handleLogout}>Logout</button>
             </>
           ) : null}
         </header>
@@ -45,6 +46,7 @@ export default function App() {
               {userData ? <Redirect to="/board-games" /> : <Redirect to="/auth" />}
             </Route>
             <Route exact path="/board-games">
+              {userData && <DetailPage />}
               {/* if there is a user, render the board games list. Otherwise, redirect to the home route/auth page */}
             </Route>
             <Route exact path="/board-games/:id">
@@ -54,7 +56,8 @@ export default function App() {
               {/* if there is a user, render the create page. Otherwise, redirect to the home route/auth page */}
             </Route>
             <Route exact path="/auth">
-              <AuthPage />
+              {userData && <Redirect to="/board-games" />}
+              <AuthPage setUser={setUser} />
             </Route>
           </Switch>
         </main>
